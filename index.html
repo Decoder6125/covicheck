@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="api.js"></script>
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+
+		* {
+			background: var(--bg-color);
+			padding: 0;
+			margin: 0;
+			font-family: 'Mulish', sans-serif;
+		}
+
+
+
+
+       :root {
+    --primary-color: black;
+    --secondary-color: #536390;
+    --font-color: #424242;
+    --bg-color: #fff;
+    --heading-color: #292922;
+}
+
+[data-theme="dark"] {
+    --primary-color: #9A97F3;
+    --secondary-color: #818cab;
+    --font-color: #e1e1ff;
+    --bg-color: #04021c;
+    --heading-color: #818cab;
+}
+
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+  
+  em {
+    margin-left: 10px;
+    font-size: 1rem;
+  }
+}
+.theme-switch {
+  display: inline-block;
+  height: 30px;
+  position: fixed;
+  right: 2px;
+  top: 40px;
+  width: 50px;
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 22px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: tomato;
+}
+
+input:checked + .slider:before {
+  transform: translateX(18px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        img {
+        	position: fixed;
+        	top: 10px;
+        	left: 0;
+        	z-index: 99999999;
+        }
+
+        .topbar{
+        	position: fixed;
+        	top: 0;
+        	width: 100%;
+        	height: 110px;
+        	background: var(--bg-color);
+        	left: 0;
+        	z-index: 999999999999;
+        }
+
+        .header {
+        	position: fixed;
+        	top: 30px;
+        	left: 100px;
+        	background: none;
+        	z-index: 999999;
+        	width: auto;
+        	height: 50px;
+        	font-size: 20px;
+        	line-height: 50px;
+        	letter-spacing: 5px;
+        	color: white;
+        }
+
+
+        .alert {
+        	background: #afd5ed;
+        	position: relative;
+        	top: 150px;
+        	width: 80%;
+        	border-bottom: 4px solid #084d78;
+        	opacity: 0.5;
+
+        }
+
+        .case {
+        	position: relative;
+        	top: 200px;
+        }
+
+        #update {
+        	position: relative;
+        	top: 210px;
+        }
+
+
+         .container1 {
+         	width: 80%;
+         	height: 100px;
+         	background: none;
+         	display: flex;
+         	justify-content: space-between;
+         	position: relative;
+         	top: 240px;
+         } 
+
+          
+         .container2 {
+         	width: 80%;
+         	height: 100px;
+         	background: none;
+         	display: flex;
+         	justify-content: space-between;
+         	position: relative;
+         	top: 250px;
+         } 
+
+          .table_container {
+          	width: 90%;
+          	height: auto;
+          	position: relative;
+          	top: 300px;
+          	overflow-x: auto;
+          }
+ 
+
+          table tr {
+          	 color: var(--primary-color);
+          	 font-size: 14px;
+          }
+
+          table tr td {
+          	text-align: center;
+          	padding: 5px;
+          }
+
+          
+          .confirmed {
+          	width: 45%;
+          	color: red;
+          	padding-top: 10px;
+          }
+          .confirmed:hover {
+          	background: #a3130f;
+          	opacity: 0.6;
+          	color: white;
+          }
+          #cnf {
+          	margin-top: 20px;
+
+          }
+          .confirmed:hover #cnf {
+          	background: #a3130f;
+          	opacity: 0.6;
+          	color: white;
+          }
+          .active {
+       
+          	width: 45%;
+            padding-top: 10px;
+          	color: orange;
+          }
+           .active:hover {
+          	background: #ab6816;
+          	opacity: 0.6;
+          	color: white;
+          }
+           #act {
+        
+           	margin-top: 20px;
+           }
+            .active:hover #act {
+          	background: #ab6816;
+          	opacity: 0.6;
+          	color: white;
+            }
+          .recovered {
+          
+          	width: 45%;
+           padding-top: 10px;
+          	color: green;
+          }
+          .recovered:hover {
+          	background: #0eab20;
+          	opacity: 0.6;
+          	color: white;
+          }
+          #rec {
+  
+          	margin-top: 20px;
+          }
+           .recovered:hover #rec {
+          	background: #0eab20;
+          	opacity: 0.6;
+          	color: white;
+            }
+           .deaths {
+          	width: 45%;
+          	color: grey;
+          	padding-top: 10px;
+          }
+          .deaths:hover {
+          	background: #303631;
+          	opacity: 0.6;
+          	color: white;
+          }
+          #det {
+          	margin-top: 20px;
+          }
+          .deaths:hover #det {
+          	background: #303631;
+          	opacity: 0.6;
+          	color: white;
+            }
+         .t1 {
+         	color: tomato; 
+         	padding: 6px;
+         	
+         }
+         .t2 {
+         	color: #a3130f; 
+         	padding: 6px;
+         	
+         }
+         .t3 {
+         	color: #ab6816; 
+         	padding: 6px;
+         	
+         }
+         .t4 {
+         	color: #0eab20; 
+         	padding: 6px;
+         	
+         }
+         .t5 {
+         	color: #303631; 
+         	padding: 6px;
+         	
+         }
+
+
+
+	</style>
+	<title></title>
+</head>
+<body>
+	<div class="topbar">
+
+
+<div class="theme-switch-wrapper">
+       <label class="theme-switch" for="checkbox">
+    <input type="checkbox" id="checkbox" />
+    <div class="slider round"></div>
+  </label>
+ 
+  </div>
+
+
+
+
+
+
+	<img src="covidl.png" height="100px" width="100px"
+	>
+	<div class="header"><font color="var(--bg-color)">CO</font><font color="tomato">VI</font><font color="var(--bg-color)">CHECK</font><font color="tomato">.</font></div>
+</div>
+
+<center>
+	<div class="alert">
+Wear masks and prevent the spread of covid-19(second wave)
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+<div class="case"><font color="tomato">West Bengal Case Summary <br>(Last updated on)</font></div>
+<font color="tomato"><div id="update"></div></font>
+
+
+<div class="container1">
+	<div class="confirmed">Confirmed<div id="cnf"><span id="delc"></span></div></div>
+	<div class="active">Active<div id="act"></div></div>
+	
+</div>
+
+
+<div class="container2">
+	
+	<div class="recovered">Recovered<div id="rec"><span id="delr"></span></div></div>
+	<div class="deaths">Deaths<div id="det"><span id="deld"></span></div></div>
+</div>
+
+
+
+
+<div class="table_container">
+
+<table width="100%">
+	<tr>
+		<th class="t1">District Name</th>
+		<th class="t2">Confirmed</th>
+		<th class="t3">Active</th>
+		<th class="t4">Recovered</th>
+		<th class="t5">Deaths</th>
+	</tr>
+	<tr>
+		<td><div id="bankura"></div></td>
+		<td><div id="bankuraC"></div></td>
+		<td><div id="bankuraA"></div></td>
+		<td><div id="bankuraR"></div></td>
+		<td><div id="bankuraD"></div></td>
+	</tr>
+
+	<tr>
+		<td><div id="birbhum"></div></td>
+		<td><div id="birbhumC"></div></td>
+		<td><div id="birbhumA"></div></td>
+		<td><div id="birbhumR"></div></td>
+		<td><div id="birbhumD"></div></td>
+	</tr>
+	<tr>
+		<td><div id="chbihar"></div></td>
+		<td><div id="chbiharC"></div></td>
+		<td><div id="chbiharA"></div></td>
+		<td><div id="chbiharR"></div></td>
+		<td><div id="chbiharD"></div></td>
+	</tr>
+
+	<tr>
+		<td><div id="ddpur"></div></td>
+		<td><div id="ddpurC"></div></td>
+		<td><div id="ddpurA"></div></td>
+		<td><div id="ddpurR"></div></td>
+		<td><div id="ddpurD"></div></td>
+	</tr>
+	<tr>
+		<td><div id="darjeeling"></div></td>
+		<td><div id="darjeelingC"></div></td>
+		<td><div id="darjeelingA"></div></td>
+		<td><div id="darjeelingR"></div></td>
+		<td><div id="darjeelingD"></div></td>
+	</tr>
+	<tr>
+		<td><div id="hoogly"></div></td>
+		<td><div id="hooglyC"></div></td>
+		<td><div id="hooglyA"></div></td>
+		<td><div id="hooglyR"></div></td>
+		<td><div id="hooglyD"></div></td>
+	</tr>
+	<tr>
+		<td><div id="howrah"></div></td>
+		<td><div id="howrahC"></div></td>
+		<td><div id="howrahA"></div></td>
+		<td><div id="howrahR"></div></td>
+		<td><div id="howrahD"></div></td>
+	</tr>
+	<tr>
+		<td><div id="jalpaiguri"></div></td>
+		<td><div id="jalpaiguriC"></div></td>
+		<td><div id="jalpaiguriA"></div></td>
+		<td><div id="jalpaiguriR"></div></td>
+		<td><div id="jalpaiguriD"></div></td>
+	</tr>
+	<tr>
+		<td><div id="jhargram"></div></td>
+		<td><div id="jhargramC"></div></td>
+		<td><div id="jhargramA"></div></td>
+		<td><div id="jhargramR"></div></td>
+		<td><div id="jhargramD"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st10"></div></td>
+		<td><div id="st10C"></div></td>
+		<td><div id="st10A"></div></td>
+		<td><div id="st10R"></div></td>
+		<td><div id="st10D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st11"></div></td>
+		<td><div id="st11C"></div></td>
+		<td><div id="st11A"></div></td>
+		<td><div id="st11R"></div></td>
+		<td><div id="st11D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st12"></div></td>
+		<td><div id="st12C"></div></td>
+		<td><div id="st12A"></div></td>
+		<td><div id="st12R"></div></td>
+		<td><div id="st12D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st13"></div></td>
+		<td><div id="st13C"></div></td>
+		<td><div id="st13A"></div></td>
+		<td><div id="st13R"></div></td>
+		<td><div id="st13D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st14"></div></td>
+		<td><div id="st14C"></div></td>
+		<td><div id="st14A"></div></td>
+		<td><div id="st14R"></div></td>
+		<td><div id="st14D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st15"></div></td>
+		<td><div id="st15C"></div></td>
+		<td><div id="st15A"></div></td>
+		<td><div id="st15R"></div></td>
+		<td><div id="st15D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st16"></div></td>
+		<td><div id="st16C"></div></td>
+		<td><div id="st16A"></div></td>
+		<td><div id="st16R"></div></td>
+		<td><div id="st16D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st17"></div></td>
+		<td><div id="st17C"></div></td>
+		<td><div id="st17A"></div></td>
+		<td><div id="st17R"></div></td>
+		<td><div id="st17D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st18"></div></td>
+		<td><div id="st18C"></div></td>
+		<td><div id="st18A"></div></td>
+		<td><div id="st18R"></div></td>
+		<td><div id="st18D"></div></td>
+	</tr>
+    <tr>
+		<td><div id="st19"></div></td>
+		<td><div id="st19C"></div></td>
+		<td><div id="st19A"></div></td>
+		<td><div id="st19R"></div></td>
+		<td><div id="st19D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st20"></div></td>
+		<td><div id="st20C"></div></td>
+		<td><div id="st20A"></div></td>
+		<td><div id="st20R"></div></td>
+		<td><div id="st20D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st21"></div></td>
+		<td><div id="st21C"></div></td>
+		<td><div id="st21A"></div></td>
+		<td><div id="st21R"></div></td>
+		<td><div id="st21D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st22"></div></td>
+		<td><div id="st22C"></div></td>
+		<td><div id="st22A"></div></td>
+		<td><div id="st22R"></div></td>
+		<td><div id="st22D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st23"></div></td>
+		<td><div id="st23C"></div></td>
+		<td><div id="st23A"></div></td>
+		<td><div id="st23R"></div></td>
+		<td><div id="st23D"></div></td>
+	</tr>
+	<tr>
+		<td><div id="st24"></div></td>
+		<td><div id="st24C"></div></td>
+		<td><div id="st24A"></div></td>
+		<td><div id="st24R"></div></td>
+		<td><div id="st24D"></div></td>
+	</tr>
+</table>
+</div>
+
+</center>
+
+
+
+
+
+
+
+<div id="confirmed"></div>
+<div id="deceased"></div>
+<div id="active"></div>
+<div id="recovered"></div>
+
+
+</body>
+</html>
