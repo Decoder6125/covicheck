@@ -2,6 +2,7 @@
 <html>
 <head>
 	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 <link href="https://fonts.googleapis.com/css2?family=Mulish&display=swap" rel="stylesheet">
 <meta name="theme-color" content="#04021c">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -207,7 +208,7 @@ input:checked + .slider:before {
          	line-height: 60px;
          	justify-content: space-between;
          	position: relative;
-         	top: 260px;
+         	top: 280px;
          	text-align: center;
          } 
          .container3 #dc{
@@ -245,7 +246,7 @@ input:checked + .slider:before {
           	width: 90%;
           	height: auto;
           	position: relative;
-          	top: 300px;
+          	top: 340px;
           	overflow-x: auto;
           }
  
@@ -372,6 +373,17 @@ input:checked + .slider:before {
          	
          }
 
+
+          #myChart {
+          	position: relative;
+          	top: 350px;
+          	width: 60%;
+          }
+
+          a {
+          	color: tomato;
+          	text-decoration: none;
+          }
 
 
 	</style>
@@ -639,9 +651,6 @@ Developed By:<a href="https://github.com/Decoder6125">DECODER6125</a>
 
 
 
-
-
-
 </center>
 
 
@@ -655,20 +664,76 @@ Developed By:<a href="https://github.com/Decoder6125">DECODER6125</a>
 <div id="active"></div>
 <div id="recovered"></div>
 
+
+
+
+
+
+<script>
+
+async function getLatest() {
+	var jsonData = await fetch('https://api.covid19india.org/states_daily.json');
+
+	var jsdatas = await jsonData.json();
+	console.log(jsdatas.states_daily);
+	console.log(jsdatas.states_daily[1132].wb);
+	console.log(jsdatas.states_daily[1131].wb);
+	console.log(jsdatas.states_daily[1130].wb);
+
+    document.getElementById("dc").textContent =  jsdatas.states_daily[1131].wb;
+	 document.getElementById("dd").textContent = jsdatas.states_daily[1133].wb;
+	 document.getElementById("dr").textContent = jsdatas.states_daily[1132].wb;
+
+
+};
+
+getLatest()
+
+
+
+
+   
+</script>
+
+
+
+
+
+
+<script>
+	async function getLatest() {
+	const jsonData = await fetch('https://api.covid19india.org/states_daily.json');
+
+	const jsdatas = await jsonData.json();
+   
+
+};
+
+getLatest()
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
 	async function getState() {
 	const jsonData = await fetch('https://api.covid19india.org/data.json');
 
 	const jsdatas = await jsonData.json();
-	console.log(jsdatas.statewise[8]);
 	 document.getElementById("cnf").textContent = jsdatas.statewise[8].confirmed;
 	 document.getElementById("act").textContent = jsdatas.statewise[8].active;
 	 document.getElementById("rec").textContent = jsdatas.statewise[8].recovered;
 	 document.getElementById("det").textContent = jsdatas.statewise[8].deaths;
 	  document.getElementById("update").textContent = jsdatas.statewise[8].lastupdatedtime;
-	  document.getElementById("dc").textContent = jsdatas.statewise[8].deltaconfirmed;
-	 document.getElementById("dd").textContent = jsdatas.statewise[8].deltadeaths;
-	 document.getElementById("dr").textContent = jsdatas.statewise[8].deltarecovered;
+	 
 	};
 	getState()
 </script>
