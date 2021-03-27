@@ -171,6 +171,12 @@ input:checked + .slider:before {
         	top: 210px;
         }
 
+        .lUpdate {
+        	position: relative;
+        	top: 240px;
+        	color: tomato;
+        }
+
 
          .container1 {
          	width: 80%;
@@ -193,6 +199,48 @@ input:checked + .slider:before {
          	top: 250px;
          } 
 
+           
+         .container3 {
+         	width: 80%;
+         	height: 60px;
+         	display: flex;
+         	line-height: 60px;
+         	justify-content: space-between;
+         	position: relative;
+         	top: 260px;
+         	text-align: center;
+         } 
+         .container3 #dc{
+         	color: black;
+         	width: 20%;
+         	background: red;
+         	opacity: 0.7;
+         	border-radius: 5px;
+         }
+         .container3 #da{
+         	color: black;
+         	width: 20%;
+         	background: orange;
+         	opacity: 0.7;
+         	border-radius: 5px;
+         }
+         .container3 #dr{
+         	color:black;
+         	width: 20%;
+         	background: green;
+         	opacity: 0.7;
+         	border-radius: 5px;
+         }
+         .container3 #dd{
+         	color: black;
+         	width: 20%;
+         	background: grey;
+         	opacity: 0.7;
+         	border-radius: 5px;
+         }
+
+
+
           .table_container {
           	width: 90%;
           	height: auto;
@@ -207,6 +255,10 @@ input:checked + .slider:before {
           	 font-size: 14px;
           }
 
+          table tr th {
+          	padding: 8px;
+          }
+
           table tr td {
           	text-align: center;
           	padding: 5px;
@@ -217,6 +269,7 @@ input:checked + .slider:before {
           	width: 45%;
           	color: red;
           	padding-top: 10px;
+          	border-radius: 5px;
           }
           .confirmed:hover {
           	background: #a3130f;
@@ -237,6 +290,7 @@ input:checked + .slider:before {
           	width: 45%;
             padding-top: 10px;
           	color: orange;
+          	border-radius: 5px;
           }
            .active:hover {
           	background: #ab6816;
@@ -257,6 +311,7 @@ input:checked + .slider:before {
           	width: 45%;
            padding-top: 10px;
           	color: green;
+          	border-radius: 5px;
           }
           .recovered:hover {
           	background: #0eab20;
@@ -276,6 +331,7 @@ input:checked + .slider:before {
           	width: 45%;
           	color: grey;
           	padding-top: 10px;
+          	border-radius: 5px;
           }
           .deaths:hover {
           	background: #303631;
@@ -379,13 +435,19 @@ Wear masks and prevent the spread of covid-19(second wave)
 	<div class="recovered">Recovered<div id="rec"><span id="delr"></span></div></div>
 	<div class="deaths">Deaths<div id="det"><span id="deld"></span></div></div>
 </div>
-
-
+<div class="lUpdate">Daily updates</div>
+<div class="container3">
+	<div id="dc"></div>
+	<div id="da">0</div>
+	<div id="dr">0</div>
+	<div id="dd"></div>
+</div>
 
 
 <div class="table_container">
 
 <table width="100%">
+	<caption><font color="tomato">District wise data</font></caption>
 	<tr>
 		<th class="t1">District Name</th>
 		<th class="t2">Confirmed</th>
@@ -604,7 +666,9 @@ Developed By:<a href="https://github.com/Decoder6125">DECODER6125</a>
 	 document.getElementById("rec").textContent = jsdatas.statewise[8].recovered;
 	 document.getElementById("det").textContent = jsdatas.statewise[8].deaths;
 	  document.getElementById("update").textContent = jsdatas.statewise[8].lastupdatedtime;
-	 
+	  document.getElementById("dc").textContent = jsdatas.statewise[8].deltaconfirmed;
+	 document.getElementById("dd").textContent = jsdatas.statewise[8].deltadeaths;
+	 document.getElementById("dr").textContent = jsdatas.statewise[8].deltarecovered;
 	};
 	getState()
 </script>
